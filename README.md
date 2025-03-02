@@ -11,25 +11,35 @@ For more information on Sqids, we recommend checking out the official Sqids (for
 
 To get started, install Laravel Sqids via the Composer package manager:
 
+This is a semi-private package, so you will need to add the following to your `composer.json` file:
 ```shell
-composer require red-explosion/laravel-sqids
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/crossplatformconsulting/laravel-sqids.git"
+    }
+]
+```
+
+```shell
+composer require crossplatform/laravel-sqids
 ```
 
 Next, you should publish the Sqids configuration file using the `vendor:publish` artisan command. The `sqids`
 configuration file will be placed in your applications `config` directory:
 
 ```shell
-php artisan vendor:publish --provider="RedExplosion\Sqids\SqidsServiceProvider"
+php artisan vendor:publish --provider="Crossplatform\Sqids\SqidsServiceProvider"
 ```
 
 ## Usage
 
 ### Using Sqids
 
-To use Laravel Sqids, simply add the `RedExplosion\Sqids\Concerns\HasSqids` trait to your model:
+To use Laravel Sqids, simply add the `Crossplatform\Sqids\Concerns\HasSqids` trait to your model:
 
 ```php
-use RedExplosion\Sqids\Concerns\HasSqids;
+use Crossplatform\Sqids\Concerns\HasSqids;
 
 class User extends Authenticatable
 {
@@ -55,7 +65,7 @@ If you would like to set a custom prefix for the model, you can override it by s
 on your model like so:
 
 ```php
-use RedExplosion\Sqids\Concerns\HasSqids;
+use Crossplatform\Sqids\Concerns\HasSqids;
 
 class User extends Authenticatable
 {
@@ -141,7 +151,7 @@ One of the most powerful features of Laravel Sqids is being able to resolve a mo
 could be incredibly powerful when searching models across your application. 
 
 ```php
-use RedExplosion\Sqids\Model;
+use Crossplatform\Sqids\Model;
 
 $model = Model::find('use_A3EyoEb2TO');
 ```
@@ -153,7 +163,7 @@ if you would like to throw an exception instead, you can use the `findOrFail` me
 the `ModelNotFoundException`:
 
 ```php
-use RedExplosion\Sqids\Model;
+use Crossplatform\Sqids\Model;
 
 $model = Model::findOrFail('use_A3EyoEb2TO');
 ```
@@ -161,30 +171,10 @@ $model = Model::findOrFail('use_A3EyoEb2TO');
 > [!IMPORTANT]
 > In order to use this feature, you must use prefixes for your Sqids.
 
-## Testing
-
-```shell
-composer test
-```
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability, please send an e-mail to Ben Sherred via ben@redexplosion.co.uk. All security
-vulnerabilities will be promptly addressed.
-
 ## Credits
 
 - [Ben Sherred](https://github.com/bensherred)
-- [All Contributors](../../contributors)
 
 ## License
 
-Laravel Sqids is open-sourced software licensed under the [MIT license](LICENSE.md).
+Laravel Sqids is open-sourced software licensed under the [MIT license](LICENSE).
