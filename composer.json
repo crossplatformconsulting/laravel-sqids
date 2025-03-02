@@ -1,0 +1,75 @@
+{
+    "name": "crossplatform/laravel-sqids",
+    "description": "A Laravel package for encoding and decoding SQIDs",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jason Page"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "ext-mbstring": "*",
+        "illuminate/contracts": "^10.0|^11.0|^12.0",
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "sqids/sqids": "^0.4.1"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.10",
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-arch": "^3.0",
+        "phpstan/phpstan": "^1.10",
+        "spatie/laravel-ray": "^1.32"
+    },
+    "autoload": {
+        "psr-4": {
+            "Crossplatform\\Sqids\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Crossplatform\\Sqids\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "test:types": "./vendor/bin/phpstan analyse --ansi",
+        "test:unit": "./vendor/bin/pest --compact --colors=always",
+        "test": [
+            "@test:lint",
+            "@test:types",
+            "@test:unit"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Crossplatform\\Sqids\\SqidsServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

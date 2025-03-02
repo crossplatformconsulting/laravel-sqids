@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Crossplatform\Sqids\Mixins;
+
+use Closure;
+use Illuminate\Database\Eloquent\Builder;
+
+/** @mixin Builder */
+class WhereSqidNotInMixin
+{
+    public function whereSqidNotIn(): Closure
+    {
+        return function (string $column, array $sqids, $boolean = 'and') {
+            /** @phpstan-ignore-next-line  */
+            return $this->whereSqidIn(column: $column, sqids: $sqids, boolean: $boolean, not: true);
+        };
+    }
+}
