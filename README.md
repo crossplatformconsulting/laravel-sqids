@@ -9,9 +9,8 @@ For more information on Sqids, we recommend checking out the official Sqids (for
 
 ## Installation
 
-To get started, install Laravel Sqids via the Composer package manager:
-
 This is a semi-private package, so you will need to add the following to your `composer.json` file:
+
 ```shell
 "repositories": [
     {
@@ -20,6 +19,8 @@ This is a semi-private package, so you will need to add the following to your `c
     }
 ]
 ```
+
+To get started, install Laravel Sqids via the Composer package manager:
 
 ```shell
 composer require crossplatform/laravel-sqids
